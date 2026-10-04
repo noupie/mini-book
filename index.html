@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>دليل الجيب · الطوارئ الإيمانية</title>
+<meta name="theme-color" content="#F1ECFB" />
+<meta name="description" content="دليل جيب رقمي للطوارئ الإيمانية: آيات طمأنينة وأحاديث صحيحة لكل حالة شعورية." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --lav-50:#FAF8FF;
+    --lav-100:#F1ECFB;
+    --lav-200:#E4DCF7;
+    --lav-300:#CFC2EE;
+    --lav-400:#B4A2E2;
+    --lav-500:#9A85D4;
+    --lav-600:#7C68B8;
+    --lav-700:#5D4C8F;
+    --ink:#3B3057;
+    --muted:#6E6390;
+  }
+
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  html,body{ margin:0; padding:0; }
+
+  body{
+    font-family:'Cairo', system-ui, -apple-system, "Segoe UI", sans-serif;
+    color:var(--ink);
+    background:var(--lav-50);
+    min-height:100vh;
+    min-height:100dvh;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ===== خلفية ناعمة ===== */
+  .bg-decor{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(180,162,226,.32), transparent 45%),
+      radial-gradient(circle at 88% 90%, rgba(207,194,238,.42), transparent 50%),
+      linear-gradient(180deg, #FBF9FF 0%, #F1ECFB 48%, #FAF8FF 100%);
+  }
+
+  .app{
+    position:relative;
+    z-index:1;
+    max-width:620px;
+    margin:0 auto;
+    padding:0 18px calc(28px + env(safe-area-inset-bottom));
+  }
+
+  /* ===== الترويسة ===== */
+  .brand{
+    text-align:center;
+    padding:34px 6px 6px;
+  }
+  .kicker{
+    font-size:.72rem;
+    letter-spacing:.22em;
+    color:var(--lav-600);
+    font-weight:600;
+  }
+  .brand h1{
+    font-size:1.62rem;
+    font-weight:700;
+    margin:.45rem 0 0;
+    letter-spacing:-.01em;
+    color:#3B3057;
+  }
+  .sep{
+    display:flex; align-items:center; justify-content:center;
+    gap:10px; color:var(--lav-400);
+    margin:14px 0 12px; font-size:.7rem;
+  }
+  .sep span{
+    height:1px; width:46px;
+    background:linear-gradient(90deg, transparent, var(--lav-300));
+  }
+  .sep span:last-child{
+    background:linear-gradient(90deg, var(--lav-300), transparent);
+  }
+  .brand p{
+    margin:0;
+    font-size:.9rem;
+    color:var(--muted);
+    line-height:1.8;
+  }
+
+  /* ===== الشبكة ===== */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:12px;
+    margin-top:24px;
+  }
+
+  .state-btn{
+    font-family:inherit;
+    color:var(--ink);
+    background:rgba(255,255,255,.78);
+    border:1px solid var(--lav-200);
+    border-radius:22px;
+    padding:18px 10px 16px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    cursor:pointer;
+    box-shadow:0 4px 18px rgba(124,104,184,.07);
+    transition:transform .18s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+    -webkit-backdrop-filter:blur(6px);
+    backdrop-filter:blur(6px);
+  }
+  .state-btn:hover,
+  .state-btn:focus-visible{
+    background:#fff;
+    border-color:var(--lav-300);
+    box-shadow:0 10px 28px rgba(124,104,184,.16);
+    outline:none;
+  }
+  .state-btn:active{ transform:scale(.97); }
+
+  .ico-wrap{
+    width:48px; height:48px;
+    border-radius:50%;
+    display:grid; place-items:center;
+    font-size:1.32rem;
+    background:linear-gradient(140deg, #F4F0FD, #E4DCF7);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.7);
+    flex-shrink:0;
+  }
+  .lbl{
+    font-size:.9rem;
+    font-weight:600;
+    line-height:1.45;
+    text-align:center;
+  }
+
+  /* ===== المشاهد ===== */
+  .view{ display:none; }
+  .view.active{ display:block; animation:fadeUp .38s ease both; }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(14px); }
+    to{ opacity:1; transform:none; }
+  }
+
+  /* ===== زر الرجوع ===== */
+  .back{
+    font-family:inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    margin-top:22px;
+    padding:9px 18px 9px 14px;
+    font-size:.84rem;
+    font-weight:600;
+    color:var(--lav-700);
+    background:rgba(255,255,255,.85);
+    border:1px solid var(--lav-200);
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .2s, box-shadow .2s, transform .15s;
+    box-shadow:0 3px 12px rgba(124,104,184,.08);
+  }
+  .back:hover{ background:#fff; box-shadow:0 6px 18px rgba(124,104,184,.16); }
+  .back:active{ transform:scale(.96); }
+  .back .arrow{ font-size:1rem; line-height:1; }
+
+  /* ===== رأس التفصيل ===== */
+  .detail-head{
+    text-align:center;
+    padding:16px 6px 4px;
+  }
+  .detail-head .ico-wrap{
+    width:68px; height:68px;
+    font-size:1.85rem;
+    margin:0 auto 14px;
+  }
+  .detail-head h2{
+    margin:0;
+    font-size:1.34rem;
+    font-weight:700;
+    color:#3B3057;
+  }
+  .detail-head p{
+    margin:7px 0 0;
+    font-size:.85rem;
+    color:var(--muted);
+    line-height:1.8;
+  }
+
+  /* ===== البطاقات ===== */
+  .card{
+    position:relative;
+    border-radius:24px;
+    padding:22px 20px;
+    margin-top:16px;
+    animation:fadeUp .45s ease both;
+  }
+
+  .pill{
+    display:inline-block;
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.06em;
+    color:var(--lav-600);
+    background:var(--lav-100);
+    border-radius:999px;
+    padding:4px 13px;
+    margin-bottom:14px;
+  }
+
+  /* بطاقة الآية */
+  .verse{
+    background:linear-gradient(160deg, #FFFFFF 0%, #F6F2FE 100%);
+    border:1px solid var(--lav-200);
+    box-shadow:0 10px 30px rgba(124,104,184,.10);
+    text-align:center;
+    overflow:hidden;
+  }
+  .verse::before{
+    content:'';
+    position:absolute;
+    top:0; right:0;
+    width:5px; height:100%;
+    background:linear-gradient(180deg, var(--lav-400), var(--lav-200));
+  }
+  .quran{
+    font-family:'Amiri', 'Traditional Arabic', serif;
+    font-size:1.42rem;
+    line-height:2.25;
+    color:#3F3469;
+    margin:0;
+    word-spacing:.04em;
+  }
+
+  /* بطاقة الحديث */
+  .hadith{
+    background:#FFFFFF;
+    border:1px solid var(--lav-200);
+    box-shadow:0 8px 24px rgba(124,104,184,.07);
+  }
+  .hadith .txt{
+    font-family:'Amiri', 'Traditional Arabic', serif;
+    font-size:1.14rem;
+    line-height:2.05;
+    color:#4A3F6B;
+    margin:0;
+  }
+
+  /* بطاقة الهمسة */
+  .boost{
+    background:linear-gradient(135deg, #E9E1F9 0%, #D8CBF3 100%);
+    border:1px solid var(--lav-300);
+    box-shadow:0 10px 26px rgba(124,104,184,.14);
+    text-align:center;
+    padding:26px 22px;
+  }
+  .boost .txt{
+    margin:0;
+    font-size:1rem;
+    font-weight:600;
+    line-height:2;
+    color:#483C74;
+  }
+  .boost .spark{
+    display:block;
+    font-size:.85rem;
+    color:var(--lav-500);
+    margin-bottom:10px;
+    letter-spacing:.3em;
+  }
+
+  /* المرجع */
+  .ref-wrap{ margin-top:16px; text-align:center; }
+  .ref{
+    display:inline-block;
+    font-size:.73rem;
+    font-weight:600;
+    color:var(--lav-600);
+    background:var(--lav-100);
+    border:1px solid var(--lav-200);
+    border-radius:999px;
+    padding:4px 14px;
+  }
+
+  /* ===== التذييل ===== */
+  .footer{
+    text-align:center;
+    padding:38px 12px 22px;
+    color:var(--muted);
+    font-size:.76rem;
+    line-height:2;
+  }
+  .footer .q{
+    font-family:'Amiri', serif;
+    font-size:1.05rem;
+    color:var(--lav-600);
+    display:block;
+    margin-bottom:8px;
+  }
+
+  /* شاشات أوسع */
+  @media (min-width:520px){
+    .grid{ grid-template-columns:repeat(3, 1fr); gap:14px; }
+    .brand h1{ font-size:1.8rem; }
+    .quran{ font-size:1.55rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-decor" aria-hidden="true"></div>
+
+<main class="app">
+
+  <!-- ======= الصفحة الرئيسية ======= -->
+  <section id="home" class="view active">
+    <header class="brand">
+      <div class="kicker">دليل الجيب</div>
+      <h1>الطوارئ الإيمانية</h1>
+      <div class="sep" aria-hidden="true"><span></span>✦<span></span></div>
+      <p>حين يضيق قلبك… اختر ما تشعر به الآن</p>
+    </header>
+
+    <div class="grid" id="grid" role="list"></div>
+
+    <footer class="footer">
+      <span class="q">﴿ وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ ﴾</span>
+      خُذ نفسًا عميقًا… ثم ابدأ من حيث أنت.
+    </footer>
+  </section>
+
+  <!-- ======= صفحة الحالة ======= -->
+  <section id="detail" class="view" aria-live="polite"></section>
+
+</main>
+
+<script>
+  /* ============================================================
+     بيانات الحالات الشعورية
+     ============================================================ */
+  const DATA = [
+    {
+      icon: '🌫️',
+      title: 'القلق والهم',
+      subtitle: 'حين تتسارع الأفكار ويثقل الصدر',
+      verse: {
+        text: 'الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
+        ref: 'سورة الرعد · ٢٨'
+      },
+      hadith: {
+        text: '«لَا يُصِيبُ الْمُسْلِمَ هَمٌّ وَلَا غَمٌّ وَلَا أَذًى وَلَا حُزْنٌ، حَتَّى الشَّوْكَةُ يُشَاكُهَا، إِلَّا كَفَّرَ اللهُ بِهَا مِنْ خَطَايَاهُ»',
+        ref: 'رواه البخاري ومسلم'
+      },
+      boost: 'القلق ليس ضعفًا، لكن لا تدعه يقودك. تنفّس بعمق، وردّد: حسبي الله ونعم الوكيل.'
+    },
+    {
+      icon: '🌱',
+      title: 'تأخّر الرزق',
+      subtitle: 'حين يتأخر ما تنتظره وتخاف الفقد',
+      verse: {
+        text: 'وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ۞ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ',
+        ref: 'سورة الطلاق · ٢-٣'
+      },
+      hadith: {
+        text: '«لَوْ أَنَّكُمْ تَوَكَّلْتُمْ عَلَى اللهِ حَقَّ تَوَكُّلِهِ لَرَزَقَكُمْ كَمَا يَرْزُقُ الطَّيْرَ، تَغْدُو خِمَاصًا وَتَرُوحُ بِطَانًا»',
+        ref: 'رواه الترمذي وصححه الألباني'
+      },
+      boost: 'الرزق مكتوب ومقسوم، والتأخير ليس حرمانًا؛ إنه ترتيبٌ لخيرٍ لم تره بعد.'
+    },
+    {
+      icon: '🌄',
+      title: 'الخوف من المستقبل',
+      subtitle: 'حين يصبح الغد ضبابًا',
+      verse: {
+        text: 'قُل لَّن يُصِيبَنَا إِلَّا مَا كَتَبَ اللَّهُ لَنَا هُوَ مَوْلَانَا ۚ وَعَلَى اللَّهِ فَلْيَتَوَكَّلِ الْمُؤْمِنُونَ',
+        ref: 'سورة التوبة · ٥١'
+      },
+      hadith: {
+        text: '«احْفَظِ اللهَ يَحْفَظْكَ، احْفَظِ اللهَ تَجِدْهُ تُجَاهَكَ… وَاعْلَمْ أَنَّ مَا أَصَابَكَ لَمْ يَكُنْ لِيُخْطِئَكَ، وَمَا أَخْطَأَكَ لَمْ يَكُنْ لِيُصِيبَكَ»',
+        ref: 'رواه الترمذي، حسن صحيح'
+      },
+      boost: 'الذي كتب لك ما مضى بعلمه ولطفه، كتب لك ما يأتي. لا تحمل غدًا لم يُخلَق بعد.'
+    },
+    {
+      icon: '🕊️',
+      title: 'الصدمات والفواجع',
+      subtitle: 'حين تنكسر فجأةً بما لم تتوقعه',
+      verse: {
+        text: 'وَبَشِّرِ الصَّابِرِينَ ۞ الَّذِينَ إِذَا أَصَابَتْهُم مُّصِيبَةٌ قَالُوا إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ ۞ أُولَٰئِكَ عَلَيْهِمْ صَلَوَاتٌ مِّن رَّبِّهِمْ وَرَحْمَةٌ ۖ وَأُولَٰئِكَ هُمُ الْمُهْتَدُونَ',
+        ref: 'سورة البقرة · ١٥٥-١٥٧'
+      },
+      hadith: {
+        text: '«عَجَبًا لِأَمْرِ الْمُؤْمِنِ، إِنَّ أَمْرَهُ كُلَّهُ خَيْرٌ، وَلَيْسَ ذَاكَ لِأَحَدٍ إِلَّا لِلْمُؤْمِنِ: إِنْ أَصَابَتْهُ سَرَّاءُ شَكَرَ فَكَانَ خَيْرًا لَهُ، وَإِنْ أَصَابَتْهُ ضَرَّاءُ صَبَرَ فَكَانَ خَيْرًا لَهُ»',
+        ref: 'رواه مسلم'
+      },
+      boost: 'لكل دمعة أجر، ولكل جرح جبر. الله رأى ما لم يره أحد، وسيجبر كسرك بلطفه.'
+    },
+    {
+      icon: '🤲',
+      title: 'تأخّر إجابة الدعاء',
+      subtitle: 'حين تدعو فلا ترى أثرًا',
+      verse: {
+        text: 'وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ',
+        ref: 'سورة البقرة · ١٨٦'
+      },
+      hadith: {
+        text: '«لَا يَزَالُ يُسْتَجَابُ لِلْعَبْدِ مَا لَمْ يَدْعُ بِإِثْمٍ أَوْ قَطِيعَةِ رَحِمٍ، مَا لَمْ يَعْجَلْ» قِيلَ: وَمَا عَجَلُهُ؟ قَالَ: «يَقُولُ: قَدْ دَعَوْتُ وَقَدْ دَعَوْتُ فَلَمْ أَرَ يُسْتَجَابُ لِي»',
+        ref: 'رواه مسلم'
+      },
+      boost: 'التأخير ليس رفضًا؛ قد يُخبّئ لك ما لم تسأله، أو يدفع عنك ما لو نلته لشقيت.'
+    },
+    {
+      icon: '🌙',
+      title: 'الحزن والوحدة',
+      subtitle: 'حين تشعر أن لا أحد يراك',
+      verse: {
+        text: 'وَاصْبِرْ لِحُكْمِ رَبِّكَ فَإِنَّكَ بِأَعْيُنِنَا',
+        ref: 'سورة الطور · ٤٨'
+      },
+      hadith: {
+        text: '«مَا أَصَابَ عَبْدًا هَمٌّ وَلَا حَزَنٌ فَقَالَ: اللَّهُمَّ إِنِّي عَبْدُكَ، وَابْنُ عَبْدِكَ، وَابْنُ أَمَتِكَ… إِلَّا أَذْهَبَ اللهُ هَمَّهُ وَحَزَنَهُ، وَأَبْدَلَهُ مَكَانَهُ فَرَجًا»',
+        ref: 'رواه أحمد، صححه الألباني'
+      },
+      boost: 'لستَ وحدك. الذي يراك في العتمة أقرب إليك من حبل الوريد. قل: يا الله… ثم اطمئن.'
+    },
+    {
+      icon: '🌊',
+      title: 'ضيق الصدر والكرب',
+      subtitle: 'حين تضيق بك الدنيا',
+      verse: {
+        text: 'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۞ إِنَّ مَعَ الْعُسْرِ يُسْرًا',
+        ref: 'سورة الشرح · ٥-٦'
+      },
+      hadith: {
+        text: '«وَاعْلَمْ أَنَّ النَّصْرَ مَعَ الصَّبْرِ، وَأَنَّ الْفَرَجَ مَعَ الْكَرْبِ، وَأَنَّ مَعَ الْعُسْرِ يُسْرًا»',
+        ref: 'رواه الترمذي، حسن صحيح'
+      },
+      boost: 'العُسر واحد واليُسر اثنان. الضيق الذي تحمله اليوم سيصبح غدًا حكاية تُروى بابتسامة.'
+    },
+    {
+      icon: '🌤️',
+      title: 'الذنب والندم',
+      subtitle: 'حين يعود الماضي يطاردك',
+      verse: {
+        text: 'قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ',
+        ref: 'سورة الزمر · ٥٣'
+      },
+      hadith: {
+        text: '«كُلُّ ابْنِ آدَمَ خَطَّاءٌ، وَخَيْرُ الْخَطَّائِينَ التَّوَّابُونَ»',
+        ref: 'رواه الترمذي، حسن'
+      },
+      boost: 'الله لا يملّ من عودتك. لا تجعل ذنبك يمنعك من الدعاء، بل اجعل الدعاء سببًا لتركه.'
+    }
+  ];
+
+  /* ============================================================
+     بناء الواجهة
+     ============================================================ */
+  const grid       = document.getElementById('grid');
+  const homeView   = document.getElementById('home');
+  const detailView = document.getElementById('detail');
+
+  DATA.forEach((state, index) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'state-btn';
+    btn.setAttribute('role', 'listitem');
+    btn.setAttribute('aria-label', state.title);
+    btn.innerHTML =
+      '<span class="ico-wrap" aria-hidden="true">' + state.icon + '</span>' +
+      '<span class="lbl">' + state.title + '</span>';
+    btn.addEventListener('click', () => openState(index));
+    grid.appendChild(btn);
+  });
+
+  /* ============================================================
+     فتح حالة
+     ============================================================ */
+  function openState(index){
+    const s = DATA[index];
+
+    detailView.innerHTML =
+      '<button class="back" id="backBtn" type="button">' +
+        '<span class="arrow" aria-hidden="true">→</span> رجوع' +
+      '</button>' +
+
+      '<div class="detail-head">' +
+        '<div class="ico-wrap" aria-hidden="true">' + s.icon + '</div>' +
+        '<h2>' + s.title + '</h2>' +
+        '<p>' + s.subtitle + '</p>' +
+      '</div>' +
+
+      '<div class="card verse" style="animation-delay:.05s">' +
+        '<span class="pill">آية طمأنينة</span>' +
+        '<p class="quran">﴿ ' + s.verse.text + ' ﴾</p>' +
+        '<div class="ref-wrap"><span class="ref">' + s.verse.ref + '</span></div>' +
+      '</div>' +
+
+      '<div class="card hadith" style="animation-delay:.12s">' +
+        '<span class="pill">من السنة النبوية</span>' +
+        '<p class="txt">' + s.hadith.text + '</p>' +
+        '<div class="ref-wrap"><span class="ref">' + s.hadith.ref + '</span></div>' +
+      '</div>' +
+
+      '<div class="card boost" style="animation-delay:.19s">' +
+        '<span class="spark" aria-hidden="true">✦ ✦ ✦</span>' +
+        '<p class="txt">' + s.boost + '</p>' +
+      '</div>';
+
+    document.getElementById('backBtn').addEventListener('click', goBack);
+
+    homeView.classList.remove('active');
+    detailView.classList.add('active');
+
+    // أعد تشغيل الأنيميشن
+    detailView.style.animation = 'none';
+    void detailView.offsetWidth;
+    detailView.style.animation = '';
+
+    window.scrollTo(0, 0);
+
+    if (history.state && history.state.view === 'detail') {
+      history.replaceState({ view: 'detail', index }, '');
+    } else {
+      history.pushState({ view: 'detail', index }, '');
+    }
+  }
+
+  /* ============================================================
+     الرجوع
+     ============================================================ */
+  function showHome(){
+    detailView.classList.remove('active');
+    homeView.classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function goBack(){
+    if (history.state && history.state.view === 'detail') {
+      history.back();
+    } else {
+      showHome();
+    }
+  }
+
+  window.addEventListener('popstate', showHome);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && detailView.classList.contains('active')) {
+      goBack();
+    }
+  });
+</script>
+
+</body>
+</html>
